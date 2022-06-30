@@ -31,6 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tcp = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
             this.encrypt = new System.Windows.Forms.Button();
             this.decrypt = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,7 +88,9 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.button3);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.tcp);
             this.splitContainer2.Panel2.Controls.Add(this.button1);
             this.splitContainer2.Panel2.Controls.Add(this.stop);
             this.splitContainer2.Panel2.Controls.Add(this.label1);
@@ -106,6 +110,18 @@
             this.richTextBox1.Size = new System.Drawing.Size(1031, 397);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            // 
+            // tcp
+            // 
+            this.tcp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tcp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tcp.Location = new System.Drawing.Point(204, 6);
+            this.tcp.Name = "tcp";
+            this.tcp.Size = new System.Drawing.Size(90, 31);
+            this.tcp.TabIndex = 17;
+            this.tcp.Text = "TCP";
+            this.tcp.UseVisualStyleBackColor = true;
+            this.tcp.Click += new System.EventHandler(this.tcp_Click);
             // 
             // button1
             // 
@@ -222,13 +238,25 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(204, 6);
+            this.button2.Location = new System.Drawing.Point(431, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 31);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "button2";
+            this.button2.Size = new System.Drawing.Size(40, 31);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "On";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Location = new System.Drawing.Point(477, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(40, 31);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Off";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -271,6 +299,8 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button encrypt;
         private System.Windows.Forms.Button decrypt;
+        private System.Windows.Forms.Button tcp;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
     }
 }
