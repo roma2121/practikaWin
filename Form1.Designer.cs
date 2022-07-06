@@ -37,12 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.start = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.encrypt = new System.Windows.Forms.Button();
-            this.decrypt = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.send_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,10 +46,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,7 +60,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
+            this.splitContainer1.Panel2.Controls.Add(this.send_button);
             this.splitContainer1.Size = new System.Drawing.Size(1201, 450);
             this.splitContainer1.SplitterDistance = 1031;
             this.splitContainer1.TabIndex = 0;
@@ -88,8 +79,6 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.button3);
-            this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2.Controls.Add(this.tcp);
             this.splitContainer2.Panel2.Controls.Add(this.button1);
             this.splitContainer2.Panel2.Controls.Add(this.stop);
@@ -180,83 +169,17 @@
             this.textBox2.TabIndex = 14;
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
-            // splitContainer3
+            // send_button
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.richTextBox2);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.encrypt);
-            this.splitContainer3.Panel2.Controls.Add(this.decrypt);
-            this.splitContainer3.Size = new System.Drawing.Size(166, 450);
-            this.splitContainer3.SplitterDistance = 361;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(166, 361);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
-            // 
-            // encrypt
-            // 
-            this.encrypt.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.encrypt.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.encrypt.Location = new System.Drawing.Point(24, 8);
-            this.encrypt.Name = "encrypt";
-            this.encrypt.Size = new System.Drawing.Size(118, 31);
-            this.encrypt.TabIndex = 16;
-            this.encrypt.Text = "Зашифровать";
-            this.encrypt.UseVisualStyleBackColor = true;
-            this.encrypt.Click += new System.EventHandler(this.encrypt_Click);
-            // 
-            // decrypt
-            // 
-            this.decrypt.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.decrypt.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.decrypt.Location = new System.Drawing.Point(24, 45);
-            this.decrypt.Name = "decrypt";
-            this.decrypt.Size = new System.Drawing.Size(118, 31);
-            this.decrypt.TabIndex = 15;
-            this.decrypt.Text = "Расшифровать";
-            this.decrypt.UseVisualStyleBackColor = true;
-            this.decrypt.Click += new System.EventHandler(this.decrypt_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(431, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(40, 31);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "On";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(477, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(40, 31);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Off";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.send_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.send_button.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.send_button.Location = new System.Drawing.Point(40, 403);
+            this.send_button.Name = "send_button";
+            this.send_button.Size = new System.Drawing.Size(93, 31);
+            this.send_button.TabIndex = 21;
+            this.send_button.Text = "Отправить";
+            this.send_button.UseVisualStyleBackColor = true;
+            this.send_button.Click += new System.EventHandler(this.send_button_Click);
             // 
             // Form1
             // 
@@ -277,10 +200,6 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,13 +214,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button start;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button encrypt;
-        private System.Windows.Forms.Button decrypt;
         private System.Windows.Forms.Button tcp;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button send_button;
     }
 }
 

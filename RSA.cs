@@ -29,15 +29,15 @@ namespace practicaWin
             return sw.ToString();
         }
 
-        public string Encrypt(string plainText)
+        public byte[] Encrypt(byte[] plainText, byte[] pubKey)
         {
             rsa = new RSACryptoServiceProvider();
-            rsa.ImportParameters(privateKey);
 
-            var data = Encoding.Unicode.GetBytes(plainText);
-            var cypher = rsa.Encrypt(data, false);
+            rsa.ImportCspBlob(pubKey);
 
-            return Convert.ToBase64String(cypher);
+            var cypher = rsa.Encrypt(plainText, false);
+
+            return cypher;
         }
 
         public string Decrypt(string cypherText)

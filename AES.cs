@@ -19,10 +19,27 @@ namespace practicaWin
             aes.GenerateKey();
             aes.Mode = CipherMode.CBC;
             aes.Padding = PaddingMode.PKCS7;
+
+            objRsa = new RSA();
+        }
+
+        RSA objRsa;
+
+        public byte[] Key(byte[] pubKey)
+        {
+            byte[] key = (byte[])aes.Key;
+            string s = "";
+            for (int i = 0; i < key.Length; i++)
+            {
+                s += key[i].ToString();
+            }
+            return objRsa.Encrypt((key), pubKey);
         }
 
         public string Encrypt(string clearText)
         {
+            byte[] kkey = aes.Key;
+
             ICryptoTransform transform = aes.CreateEncryptor();
 
             byte[] encryptedBytes = transform.TransformFinalBlock(ASCIIEncoding.ASCII.GetBytes(clearText), 0, clearText.Length);

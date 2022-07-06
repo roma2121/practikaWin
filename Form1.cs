@@ -3,6 +3,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
+using System.Net.Sockets;
+
 
 using SharpPcap;
 using PacketDotNet;
@@ -19,8 +22,14 @@ namespace practicaWin
             objRsa = new RSA();
         }
 
-        AES objAes;
-        RSA objRsa;
+        static string userName;
+        private const string host = "127.0.0.1";
+        private const int port = 8888;
+        static TcpClient client;
+        static NetworkStream stream;
+
+        static AES objAes;
+        static RSA objRsa;
         CaptureDeviceList devices = CaptureDeviceList.Instance;
         ICaptureDevice device = null;
 
@@ -36,7 +45,21 @@ namespace practicaWin
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (device != null)
-                stop_Click(sender, e);
+            {
+                if (device != null)
+                {
+                    device.StopCapture();
+                    device.Close();
+                }
+
+                stop.Enabled = false;
+                tcp.Enabled = true;
+                button1.Enabled = false;
+                label1.Enabled = false;
+                textBox2.Enabled = false;
+
+                Disconnect();
+            }
         }
 
         private void ClearStart()
@@ -73,6 +96,8 @@ namespace practicaWin
 
         private void stop_Click(object sender, EventArgs e)
         {
+            Connection();
+
             if (device != null)
             {
                 device.StopCapture();
@@ -149,16 +174,6 @@ namespace practicaWin
             }
         }
 
-        private void encrypt_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Text = objAes.Encrypt(richTextBox1.Text);
-        }
-
-        private void decrypt_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Text = objAes.Decrypt(richTextBox2.Text);
-        }
-
         async private void tcp_Click(object sender, EventArgs e)
         {
             stop_Click(sender, e);
@@ -190,14 +205,86 @@ namespace practicaWin
             richTextBox1.ScrollToCaret();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+
+        private void Connection()
         {
-            richTextBox2.Text = objRsa.Encrypt(richTextBox1.Text);
+            client = new TcpClient();
+            try
+            {
+                userName = "1";
+                client.Connect(host, port);
+                stream = client.GetStream();
+
+                string message = userName;
+                byte[] data = Encoding.Unicode.GetBytes(message);
+                stream.Write(data, 0, data.Length);
+
+                Thread receiveThread = new Thread(new ThreadStart(ReceiveMessage));
+                receiveThread.Start();
+            }
+            catch (Exception ex)
+            {
+                richTextBox1.Text = ex.Message;
+                Disconnect();
+            }
+        }
+        private void send_button_Click(object sender, EventArgs e)
+        {
+            string message = objAes.Encrypt(richTextBox1.Text);
+            byte[] data = Encoding.Unicode.GetBytes(message);
+            stream.Write(data, 0, data.Length);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        static void KeyEncryption(byte[] key)
         {
-            richTextBox2.Text = objRsa.Decrypt(richTextBox2.Text);
+            string message = "aesKey:" + Convert.ToBase64String(objAes.Key(key));
+            byte[] data = Encoding.Unicode.GetBytes(message);
+            stream.Write(data, 0, data.Length);
+        }
+
+        static void ReceiveMessage()
+        {
+            while (true)
+            {
+                try
+                {
+                    byte[] data = new byte[64];
+                    StringBuilder builder = new StringBuilder();
+                    int bytes = 0;
+                    do
+                    {
+                        bytes = stream.Read(data, 0, data.Length);
+                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                    }
+                    while (stream.DataAvailable);
+
+                    string message = builder.ToString();
+
+
+                    if (message.Contains("rsaKey:"))
+                    {
+                        byte[] key = Convert.FromBase64String(message.Substring("rsaKey:".Length));
+
+
+                        KeyEncryption(key);
+                    }
+                }
+                catch
+                {
+                    Disconnect();
+                    MessageBox.Show("Подключение прервано!");
+                    Environment.Exit(0);
+                }
+            }
+        }
+
+        static void Disconnect()
+        {
+            if (stream != null)
+                stream.Close();
+            if (client != null)
+                client.Close();
         }
     }
 }
